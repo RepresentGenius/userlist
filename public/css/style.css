@@ -1,0 +1,108 @@
+body,
+p,
+ul,
+li,
+table,
+div,
+h1 {
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    background-color: #1B2A4A;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appname {
+    color: #F7F9Fc;
+}
+main {
+    flex: 1;
+    min-width: 0;
+    background-color: #F7F9FC;
+}
+
+footer {
+    background-color: #4A5568;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width:80%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    height: 100px;
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.inputtext {
+    width: 80%;
+    height: 30px;
+    margin: auto;
+    border: 1px solid #1B2A4A;
+    border-radius: 4px;
+}
+
+.submitbtn {
+    width: 10%;
+    height: 40px;
+    margin: auto;
+    border: 1px solid #1B2A4A;
+    border-radius: 4px;
+    background-color: #2C5E4F;
+    color: #F7F9FC;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+thead {
+    background-color: #4A5568;
+}
+
+th, td {
+    width: 50%;
+    padding: 0% 10%;
+    border-bottom: 1px solid #1B2A4A;
+}
+
+th {
+    color: #F7F9FC;
+}
+
+th p, td p {
+    text-align: left;
+}
