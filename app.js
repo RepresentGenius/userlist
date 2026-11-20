@@ -15,8 +15,20 @@ app.get('/db-test',async (req,res) => {
     }
 });
 
-app.get('/', (req, res) => {
-    res.render('list.ejs');
+app.get('/', async (req, res) => {
+    try{
+        const query = 'SELECT * FROM users';
+
+        const result = await pool.query(query);
+        
+        console.log('ユーザーリストを表示しました');
+
+        res.render('/', {users: result.rows});
+    } catch (err) {
+        console.error('エラーが発生しました', err);
+    } finally {
+        pool.end();
+    }
 });
 
 app.listen(3000);

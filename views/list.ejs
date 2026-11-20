@@ -27,14 +27,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% users.forEach(user => { %>
                         <tr>
-                            <td><p>Taro</p></td>
-                            <td><p>abcde</p></td>
+                            <td><p><%= user.id %></p></td>
+                            <td><p><%= user.password %></p></td>
                         </tr>
-                        <tr>
-                            <td><p>Hanako</p></td>
-                            <td><p>12345</p></td>
-                        </tr>
+                        <% }) %>
                     </tbody>
                 </table>
             </div>
