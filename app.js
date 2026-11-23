@@ -1,38 +1,43 @@
-const express = require('express');
-const pool = require('./db');
+import express from "express";
 
 const app = express();
-
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true}));
+const userExample = {rows:[{"id":"taro", "password":"abc"},{"id":"hanako", "password":"efg"}]};
+const userNothing = {rows:[]};
 
 app.set('view engine', 'ejs');
 
-app.get('/', async (req, res) => {
-    try{
-        const query = 'SELECT * FROM users';
+app.use(express.static("public"));
 
-        const result = await pool.query(query);
-        
-        console.log('ユーザーリストを表示しました');
-
-        res.render('list', {users: result.rows});
-    } catch (err) {
-        console.error('ユーザーリストの表示に失敗しました', err);
-    }
+app.get("/", (req, res) => {
+    const result = userExample;
+    res.render('list', {users: result.rows});
 });
 
-app.post('/insert', async (req, res) => {
-    try{
-        const query = 'INSERT INTO users (id,password) VALUES ($1, $2)';
-        const values = [req.body.id, req.body.password];
-        await pool.query(query, values);
-        console.log('ユーザーの追加に成功しました');
-        res.redirect('/');
-    } catch (err) {
-        console.error('ユーザーの追加に失敗しました', err);
-        res.status(500).send('ユーザーの追加に失敗しました');
+app.get("/add", (req, res) => {
+    res.render('add');
+});
+
+app.get("/list", (req, res) => {
+    const result = userExample;
+    res.render('list', {users: result.rows});
+});
+
+app.get("/list/:id" , (req, res) => {
+    const result = {rows:[userExample.rows.find((user) => user.id === req.params.id)]};
+    if(!result.rows[0]) {
+        res.render('list', {users: userNothing.rows});
     }
-})
+    res.render('list', {users: result.rows});
+    
+});
+
+app.get("/api", (req, res) => {
+    const result = userExample;
+    res.json({users: result.rows});
+});
+
+app.use((req, res) => {
+    res.status(404).render("not-found", { message : "ページが見つかりません"});
+});
 
 app.listen(3000);

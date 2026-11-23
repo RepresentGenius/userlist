@@ -1,0 +1,12 @@
+<%- include("partials/header") %>
+<div class="container">
+    <h1 class="title">ユーザー追加</h1>
+    <form action="insert" method="POST">
+        <label class="inputlabel">ID</label>
+        <input class="inputtext" type="text" name="id" id="id"/>
+        <label class="inputlabel" for="password">Password</label>
+        <input class="inputtext" type="text" name="password" id="password"/>
+        <input class="submitbtn" type="submit" value="追加"/>
+    </form>
+</div>
+<%- include("partials/footer") %>
